@@ -10,6 +10,7 @@ import ScrollProgress from '@/components/ScrollProgress'
 import ScrollToTop from '@/components/ScrollToTop'
 import SectionDivider from '@/components/SectionDivider'
 import VisitorCounter from '@/components/VisitorCounter'
+import AutoScrollButton from '@/components/AutoScrollButton'
 import { SmokeyFluidCursor } from 'react-smokey-fluid-cursor'
 
 import { useState, useEffect } from 'react'
@@ -29,20 +30,24 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-black">
-      {/* Background layer */}
-      {!isTouchDevice ? (
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <SmokeyFluidCursor
-            config={{
-              transparent: true,
-              densityDissipation: 0.98,
-              simResolution: 128,
-              dyeResolution: 512,
-            }}
-          />
-        </div>
-      ) : (
-        <div className="fixed inset-0 z-0 opacity-20">
+      {/* Primary Background Layer: Smokey Fluid Cursor */}
+      <div
+        className="fixed inset-0 z-0 pointer-events-none"
+        style={{ touchAction: isTouchDevice ? 'none' : 'auto' }}
+      >
+        <SmokeyFluidCursor
+          config={{
+            transparent: true,
+            densityDissipation: 0.98,
+            simResolution: isTouchDevice ? 64 : 128,
+            dyeResolution: isTouchDevice ? 256 : 512,
+          }}
+        />
+      </div>
+
+      {/* Secondary Background Layer: Particles (Subtle fallback/enhancement for touch) */}
+      {isTouchDevice && (
+        <div className="fixed inset-0 z-0 opacity-10 pointer-events-none">
           <Particles />
         </div>
       )}
@@ -50,6 +55,7 @@ export default function Home() {
       {/* UI Elements */}
       <ScrollProgress />
       <VisitorCounter variant="floating" />
+      <AutoScrollButton />
       <Navigation />
 
       {/* Main content */}
