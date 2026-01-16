@@ -33,20 +33,19 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-black">
-      {/* Primary Background Layer: Smokey Fluid Cursor */}
-      <div
-        className="fixed inset-0 z-0 pointer-events-none"
-        style={{ touchAction: isTouchDevice ? 'none' : 'auto' }}
-      >
-        <SmokeyFluidCursor
-          config={{
-            transparent: true,
-            densityDissipation: 0.98,
-            simResolution: isTouchDevice ? 64 : 128,
-            dyeResolution: isTouchDevice ? 256 : 512,
-          }}
-        />
-      </div>
+      {/* Primary Background Layer: Smokey Fluid Cursor (Desktop Only) */}
+      {!isTouchDevice && (
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          <SmokeyFluidCursor
+            config={{
+              transparent: true,
+              densityDissipation: 0.98,
+              simResolution: 128,
+              dyeResolution: 512,
+            }}
+          />
+        </div>
+      )}
 
       {/* Secondary Background Layer: Particles (Subtle fallback/enhancement for touch) */}
       {isTouchDevice && (
