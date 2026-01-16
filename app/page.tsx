@@ -5,41 +5,55 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Projects from '@/components/Projects'
 import Contact from '@/components/Contact'
-// import Particles from '@/components/Particles'
+import Particles from '@/components/Particles'
 import ScrollProgress from '@/components/ScrollProgress'
 import ScrollToTop from '@/components/ScrollToTop'
 import SectionDivider from '@/components/SectionDivider'
 import VisitorCounter from '@/components/VisitorCounter'
 import { SmokeyFluidCursor } from 'react-smokey-fluid-cursor'
 
+import { useState, useEffect } from 'react'
+
 export default function Home() {
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
+
+  useEffect(() => {
+    const checkTouch = () => {
+      setIsTouchDevice(
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0
+      )
+    }
+    checkTouch()
+  }, [])
+
   return (
     <main className="relative min-h-screen bg-black">
-      <div className="fixed inset-0 z-0 pointer-events-none" style={{ touchAction: 'none' }}>
-        <SmokeyFluidCursor
-          config={{
-            transparent: true,
-            densityDissipation: 0.98,
-            simResolution: 128,
-            dyeResolution: 512,
-          }}
-        />
-      </div>
+      {/* Background layer */}
+      {!isTouchDevice ? (
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          <SmokeyFluidCursor
+            config={{
+              transparent: true,
+              densityDissipation: 0.98,
+              simResolution: 128,
+              dyeResolution: 512,
+            }}
+          />
+        </div>
+      ) : (
+        <div className="fixed inset-0 z-0 opacity-20">
+          <Particles />
+        </div>
+      )}
 
-      {/* Particles background */}
-      {/* <Particles /> */}
-
-      {/* Scroll Progress Bar */}
+      {/* UI Elements */}
       <ScrollProgress />
-
-      {/* Floating Visitor Counter */}
       <VisitorCounter variant="floating" />
-
-      {/* Navigation */}
       <Navigation />
 
       {/* Main content */}
-      <div className="relative z-10" style={{ touchAction: 'auto' }}>
+      <div className="relative z-10">
         <Hero />
         <SectionDivider />
         <About />
