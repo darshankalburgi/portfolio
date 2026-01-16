@@ -14,12 +14,14 @@ import { SmokeyFluidCursor } from 'react-smokey-fluid-cursor'
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-black overflow-x-hidden">
-      <div className="fixed inset-0 z-0 pointer-events-none">
+    <main className="relative min-h-screen bg-black">
+      <div className="fixed inset-0 z-0 pointer-events-none" style={{ touchAction: 'none' }}>
         <SmokeyFluidCursor
           config={{
             transparent: true,
             densityDissipation: 0.98,
+            simResolution: 128,
+            dyeResolution: 512,
           }}
         />
       </div>
@@ -37,7 +39,7 @@ export default function Home() {
       <Navigation />
 
       {/* Main content */}
-      <div className="relative z-10">
+      <div className="relative z-10" style={{ touchAction: 'auto' }}>
         <Hero />
         <SectionDivider />
         <About />
