@@ -21,6 +21,7 @@ const SmokeyFluidCursor = dynamic(
 
 export default function Home() {
   const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const [hasChecked, setHasChecked] = useState(false)
 
   useEffect(() => {
     // Force scroll to top on refresh
@@ -31,6 +32,7 @@ export default function Home() {
         'ontouchstart' in window ||
         navigator.maxTouchPoints > 0
       )
+      setHasChecked(true)
     }
     checkTouch()
   }, [])
@@ -38,7 +40,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-black">
       {/* Primary Background Layer: Smokey Fluid Cursor (Desktop Only) */}
-      {!isTouchDevice && (
+      {hasChecked && !isTouchDevice && (
         <div className="fixed inset-0 z-0 pointer-events-none">
           <SmokeyFluidCursor
             config={{
