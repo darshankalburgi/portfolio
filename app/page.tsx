@@ -10,7 +10,7 @@ import ScrollProgress from '@/components/ScrollProgress'
 import ScrollToTop from '@/components/ScrollToTop'
 import SectionDivider from '@/components/SectionDivider'
 import VisitorCounter from '@/components/VisitorCounter'
-import AutoScrollButton from '@/components/AutoScrollButton'
+// import AutoScrollButton from '@/components/AutoScrollButton'
 import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 
@@ -63,7 +63,7 @@ export default function Home() {
       {/* UI Elements */}
       <ScrollProgress />
       <VisitorCounter variant="floating" />
-      <AutoScrollButton />
+      {/* <AutoScrollButton /> */}
       <Navigation />
 
       {/* Main content */}
