@@ -42,7 +42,7 @@ export default function AutoScrollButton() {
     if (!isVisible) return null
 
     return (
-        <div className="fixed bottom-6 left-4 z-[100] md:hidden">
+        <div className="fixed bottom-12 left-8 z-[100] md:hidden">
             <motion.button
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
