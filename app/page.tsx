@@ -15,7 +15,7 @@ import { SmokeyFluidCursor } from 'react-smokey-fluid-cursor'
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-black overflow-x-hidden">
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <SmokeyFluidCursor
           config={{
             transparent: true,
