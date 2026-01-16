@@ -19,6 +19,9 @@ export default function Home() {
   const [isTouchDevice, setIsTouchDevice] = useState(false)
 
   useEffect(() => {
+    // Force scroll to top on refresh
+    window.scrollTo(0, 0)
+
     const checkTouch = () => {
       setIsTouchDevice(
         'ontouchstart' in window ||

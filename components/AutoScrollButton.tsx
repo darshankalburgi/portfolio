@@ -23,7 +23,7 @@ export default function AutoScrollButton() {
         setIsHolding(true)
         const scroll = () => {
             window.scrollBy({
-                top: 30, // Speed of scrolling
+                top: 50, // Even faster speed
                 behavior: 'auto'
             })
             scrollRef.current = requestAnimationFrame(scroll)
