@@ -11,9 +11,13 @@ import ScrollToTop from '@/components/ScrollToTop'
 import SectionDivider from '@/components/SectionDivider'
 import VisitorCounter from '@/components/VisitorCounter'
 import AutoScrollButton from '@/components/AutoScrollButton'
-import { SmokeyFluidCursor } from 'react-smokey-fluid-cursor'
-
 import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
+
+const SmokeyFluidCursor = dynamic(
+  () => import('react-smokey-fluid-cursor').then((mod) => mod.SmokeyFluidCursor),
+  { ssr: false }
+)
 
 export default function Home() {
   const [isTouchDevice, setIsTouchDevice] = useState(false)
